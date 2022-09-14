@@ -1,0 +1,28 @@
+@import '../../styles/settings.scss';
+
+.title-bar-container {
+  display: flex;
+  background: $darkBlue;
+  color: $white;
+  .title-bar-wrapper {
+    display: flex;
+    margin: 0 50px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    h2 {
+      font-weight: $fontXBold;
+    }
+    .title-mode {
+      display: flex;
+      align-items: center;
+      .moon {
+        rotate: -30deg;
+      }
+      p {
+        margin-left: 10px;
+        font-weight: $fontBold;
+      }
+    }
+  }
+}
