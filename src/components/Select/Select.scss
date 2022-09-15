@@ -1,0 +1,27 @@
+@import '../../styles/settings.scss';
+
+.select-wrapper {
+  select {
+    height: 50px;
+    width: 200px;
+    padding-left: 10px;
+    font-family: $fontFamily;
+    outline: none;
+    border-radius: 5px;
+    font-weight: $fontBold;
+    border: none;
+    option {
+      font-weight: $fontBold;
+    }
+  }
+  .dark {
+    color: $white;
+    box-shadow: $veryDarkBlue 0px 8px 24px;
+    background: $darkBlue;
+  }
+  .light {
+    color: $veryDarkBlue;
+    box-shadow: $veryLightGray 0px 8px 24px;
+    background: $veryLightGray;
+  }
+}

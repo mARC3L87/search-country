@@ -1,0 +1,38 @@
+@import '../../styles/settings.scss';
+
+.search-input {
+  display: flex;
+  width: 400px;
+  .input-icon {
+    position: absolute;
+    translate: 100% 100%;
+  }
+  input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    padding-left: 50px;
+    border-radius: 5px;
+    color: $white;
+    font-size: $homepageItems;
+    outline: none;
+  }
+  .dark {
+    color: $white;
+    box-shadow: $veryDarkBlue 0px 8px 24px;
+    background: $darkBlue;
+    &::placeholder {
+      color: $white;
+      font-family: $fontFamily;
+    }
+  }
+  .light {
+    color: $veryDarkBlue;
+    box-shadow: $veryLightGray 0px 8px 24px;
+    background: $veryLightGray;
+    &::placeholder {
+      color: $veryDarkBlue;
+      font-family: $fontFamily;
+    }
+  }
+}
