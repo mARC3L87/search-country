@@ -2,14 +2,14 @@
 
 .title-bar-container {
   display: flex;
-  background: $darkBlue;
-  color: $white;
+
   .title-bar-wrapper {
     display: flex;
     margin: 0 50px;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    cursor: pointer;
     h2 {
       font-weight: $fontXBold;
     }
@@ -25,4 +25,14 @@
       }
     }
   }
+}
+.dark {
+  background: $darkBlue;
+  color: $white;
+  box-shadow: $veryDarkBlue 0px 8px 24px;
+}
+.light {
+  background: $veryLightGray;
+  color: $veryDarkBlue;
+  box-shadow: $veryLightGray 0px 8px 24px;
 }

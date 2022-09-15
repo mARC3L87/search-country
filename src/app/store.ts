@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import countrySlice from '../features/countrySlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    countryState: countrySlice,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
