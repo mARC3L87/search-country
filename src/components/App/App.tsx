@@ -9,7 +9,9 @@ function App() {
   return (
     <div className={`App ${mode === 'dark' ? 'dark' : 'light'}`}>
       <TitleBar />
-      <Home />
+      <div>
+        <Home />
+      </div>
     </div>
   );
 }

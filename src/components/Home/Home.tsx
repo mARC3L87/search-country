@@ -1,21 +1,21 @@
-import { useEffect } from 'react';
+import { Fragment } from 'react';
+
 import SearchInput from '../SearchInput/SearchInput';
-import { useAppDispatch } from '../../app/hooks';
-import { fetchCountries } from '../../features/countrySlice';
 import Select from '../Select/Select';
+import CountryWrapper from '../CountryWrapper/CountryWrapper';
 import './Home.scss';
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCountries());
-  }, [dispatch]);
   return (
-    <section className='search-section'>
-      <SearchInput />
-      <Select />
-    </section>
+    <div>
+      <section className='search-section'>
+        <SearchInput />
+        <Select />
+      </section>
+      <section>
+        <CountryWrapper />
+      </section>
+    </div>
   );
 };
 

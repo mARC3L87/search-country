@@ -35,6 +35,7 @@ export const countrySlice = createSlice({
       })
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.status = 'succeeded';
+        state.status = 'idle';
         state.countries = action.payload;
       })
       .addCase(fetchCountries.rejected, (state) => {
@@ -42,5 +43,9 @@ export const countrySlice = createSlice({
       });
   },
 });
+
+export const selectAllCountries = (state: RootState) =>
+  state.countryState.countries;
+export const selectStatus = (state: RootState) => state.countryState.status;
 
 export default countrySlice.reducer;

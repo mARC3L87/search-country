@@ -22,7 +22,9 @@ body {
   }
 }
 .App {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .dark {
   background-color: $veryDarkBlueBackground;
