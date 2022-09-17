@@ -7,15 +7,15 @@ import './Home.scss';
 
 const Home = () => {
   return (
-    <div>
+    <Fragment>
       <section className='search-section'>
         <SearchInput />
         <Select />
       </section>
-      <section>
+      <section className='country-section'>
         <CountryWrapper />
       </section>
-    </div>
+    </Fragment>
   );
 };
 

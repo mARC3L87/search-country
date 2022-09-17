@@ -1,3 +1,5 @@
+import { useAppSelector } from '../../app/hooks';
+import { selectMode } from '../../features/modeSlice';
 import './CountryCard.scss';
 
 interface CountryCardProps {
@@ -14,8 +16,11 @@ interface CountryCardProps {
   };
 }
 const CountryCard = ({ country }: CountryCardProps) => {
+  const mode = useAppSelector(selectMode);
   return (
-    <div className='country-card-wrapper'>
+    <div
+      className={`country-card-wrapper ${mode === 'dark' ? 'dark' : 'light'}`}
+    >
       <img src={country.flags.svg} alt={country.name.common} />
       <div className='country-card-details'>
         <h3>{country.name.common}</h3>
