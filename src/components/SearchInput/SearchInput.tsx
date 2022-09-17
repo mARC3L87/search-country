@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../app/hooks';
-import { selectMode } from '../../features/countrySlice';
+import { selectMode } from '../../features/modeSlice';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,7 @@ const SearchInput = () => {
   return (
     <div className='search-input'>
       <FontAwesomeIcon
-        className={`input-icon ${mode === 'dark' ? 'dark' : 'light'}`}
+        className={`input-icon ${mode === 'light' ? 'grey' : ''}`}
         icon={faMagnifyingGlass}
       />
       <input

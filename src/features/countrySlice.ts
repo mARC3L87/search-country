@@ -1,25 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
+import axios from 'axios';
 
-interface CountryState {
-  mode: 'dark' | 'light';
+interface CountryTypes {
+  countries: [];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
-const initialState: CountryState = {
-  mode: 'dark',
+const initialState: CountryTypes = {
+  countries: [],
+  status: 'loading',
 };
+
+export const fetchCountries = createAsyncThunk(
+  'country/fetchCountries',
+  async () => {
+    try {
+      const fetchedAllCountries = await axios.get(
+        'https://restcountries.com/v3.1/all'
+      );
+      return fetchedAllCountries.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 export const countrySlice = createSlice({
   name: 'country',
   initialState,
-  reducers: {
-    changeMode: (state) => {
-      state.mode === 'dark' ? (state.mode = 'light') : (state.mode = 'dark');
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCountries.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCountries.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.countries = action.payload;
+      })
+      .addCase(fetchCountries.rejected, (state) => {
+        state.status = 'failed';
+      });
   },
 });
-
-export const selectMode = (state: RootState) => state.countryState.mode;
-
-export const { changeMode } = countrySlice.actions;
 
 export default countrySlice.reducer;

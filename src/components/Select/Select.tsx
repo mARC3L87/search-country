@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../app/hooks';
-import { selectMode } from '../../features/countrySlice';
+import { selectMode } from '../../features/modeSlice';
 import './Select.scss';
 
 const Select = () => {

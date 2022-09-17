@@ -7,6 +7,9 @@
     position: absolute;
     translate: 100% 100%;
   }
+  .grey {
+    color: $darkGray;
+  }
   input {
     width: 100%;
     height: 50px;
@@ -28,10 +31,10 @@
   }
   .light {
     color: $veryDarkBlue;
-    box-shadow: $veryLightGray 0px 8px 24px;
-    background: $veryLightGray;
+    box-shadow: $darkGray 0px 2px 5px;
+    background: $white;
     &::placeholder {
-      color: $veryDarkBlue;
+      color: $darkGray;
       font-family: $fontFamily;
     }
   }

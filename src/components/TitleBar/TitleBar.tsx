@@ -1,4 +1,4 @@
-import { changeMode, selectMode } from '../../features/countrySlice';
+import { changeMode, selectMode } from '../../features/modeSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';

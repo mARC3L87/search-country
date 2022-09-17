@@ -1,8 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import modeSlice from '../features/modeSlice';
 import countrySlice from '../features/countrySlice';
 
 export const store = configureStore({
   reducer: {
+    modeState: modeSlice,
     countryState: countrySlice,
   },
 });
