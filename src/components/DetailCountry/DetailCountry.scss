@@ -1,0 +1,15 @@
+@import '../../styles/settings.scss';
+
+.detail-country-container {
+  .back {
+    display: flex;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    .btn-back {
+      margin: 10px;
+    }
+  }
+}

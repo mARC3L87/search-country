@@ -9,11 +9,11 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    cursor: pointer;
     h2 {
       font-weight: $fontXBold;
     }
     .title-mode {
+      cursor: pointer;
       display: flex;
       align-items: center;
       .moon {
