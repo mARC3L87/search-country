@@ -23,9 +23,7 @@ const DetailCountry = () => {
         <FontAwesomeIcon icon={faArrowLeftLong} />
         <p className='btn-back'>Back</p>
       </div>
-      <div className='detail-country-wrapper'>
-        <DetailCountryCard />
-      </div>
+      <DetailCountryCard />
     </section>
   );
 };

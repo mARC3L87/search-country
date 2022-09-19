@@ -8,6 +8,18 @@ interface CountryTypes {
   filteredCountry: {
     name: {
       common: string;
+      nativeName: {};
+    };
+    tld: string[];
+    currencies: {};
+    capital: string[];
+    region: string;
+    subregion: string;
+    languages: {};
+    borders?: string[] | undefined;
+    population: number;
+    flags: {
+      svg: string;
     };
   };
 }
@@ -17,6 +29,18 @@ const initialState: CountryTypes = {
   filteredCountry: {
     name: {
       common: '',
+      nativeName: {},
+    },
+    tld: [],
+    currencies: {},
+    capital: [],
+    region: '',
+    subregion: '',
+    languages: {},
+    borders: [],
+    population: 0,
+    flags: {
+      svg: '',
     },
   },
 };
