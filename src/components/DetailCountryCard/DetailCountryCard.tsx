@@ -6,12 +6,23 @@ import {
   findCountry,
   fetchCountries,
 } from '../../features/countrySlice';
+import { selectMode } from '../../features/modeSlice';
+import { getLanguage, getCurrency, getNativeName } from '../../utils/utils';
 import './DetailCountryCard.scss';
 
 const DetailCountryCard = () => {
   const { countryId } = useParams();
   const dispatch = useAppDispatch();
   const filterdCountries = useAppSelector(selectFilterdCountries);
+  const mode = useAppSelector(selectMode);
+
+  useEffect(() => {
+    const waitForCountry = async () => {
+      await dispatch(fetchCountries());
+      dispatch(findCountry(countryId));
+    };
+    waitForCountry();
+  }, [countryId, dispatch]);
 
   const {
     name,
@@ -25,58 +36,56 @@ const DetailCountryCard = () => {
     borders,
     flags,
   } = filterdCountries;
-  const currency = Object.entries(currencies) as any;
-  const nativeName = Object.entries(name.nativeName) as any;
-
-  useEffect(() => {
-    const waitForCountry = async () => {
-      await dispatch(fetchCountries());
-      dispatch(findCountry(countryId));
-    };
-    waitForCountry();
-  }, [countryId, dispatch]);
 
   return (
     <div className='detail-country-wrapper'>
-      <img src={flags.svg} alt={name.common} />
+      <div className='image-wrapper'>
+        <img src={flags.svg} alt={name.common} />
+      </div>
       <div className='detail-country-text'>
         <h2>{name.common}</h2>
         <div className='country-info'>
           <div className='country-info-col'>
-            {nativeName.length !== 0 && (
-              <span>
-                <p>Native Name: {nativeName[0][1].common}</p>
-              </span>
-            )}
-            <span>
-              <p>Population: {population.toLocaleString('en-US')}</p>
-            </span>
-            <span>
-              <p>Region: {region}</p>
-            </span>
-            <span>
-              <p>Subregion: {subregion}</p>
-            </span>
-            <span>
-              <p>Capital: {capital}</p>
-            </span>
+            <p>
+              <span>Native Name:</span> {getNativeName(name.nativeName)}
+            </p>
+            <p>
+              <span>Population:</span> {population.toLocaleString('en-US')}
+            </p>
+            <p>
+              <span>Region:</span> {region}
+            </p>
+            <p>
+              <span>Subregion:</span> {subregion}
+            </p>
+            <p>
+              <span>Capital:</span> {capital}
+            </p>
           </div>
           <div className='country-info-col'>
-            <span>
-              <p>Top Level Domain: {tld}</p>
-            </span>
-            {currency.length !== 0 && (
-              <span>
-                <p>Currencies: {currency[0][1].name}</p>
-              </span>
-            )}
-            {/* <p>Languages: {languages.lang}</p> */}
+            <p>
+              <span>Top Level Domain:</span> {tld}
+            </p>
+            <p>
+              <span>Currencies:</span> {getCurrency(currencies)}
+            </p>
+            <p>
+              <span>Languages:</span> {getLanguage(languages)}
+            </p>
           </div>
         </div>
         <div className='borders'>
+          <p>
+            <span>Border Countries:</span>
+          </p>
           <ul>
-            {borders?.map((border) => (
-              <li>{border}</li>
+            {borders?.map((border, index) => (
+              <li
+                className={`${mode === 'dark' ? 'dark' : 'light'}`}
+                key={index}
+              >
+                {border}
+              </li>
             ))}
           </ul>
         </div>

@@ -1,29 +1,33 @@
 @import '../../styles/settings.scss';
-
-.country-card-wrapper {
-  max-width: 350px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  border-radius: 10px;
-  img {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+:root {
+  a {
+    text-decoration: none;
   }
-  .country-card-details {
-    margin: 20px;
-    p {
-      margin: 5px 0;
-      span {
-        font-weight: $fontXBold;
+  .country-card-wrapper {
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 10px;
+    img {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .country-card-details {
+      margin: 20px;
+      p {
+        margin: 5px 0;
+        span {
+          font-weight: $fontXBold;
+        }
       }
     }
   }
-}
-.dark {
-  background: $darkBlue;
-}
-.light {
-  background: $white;
+  .dark {
+    background: $darkBlue;
+  }
+  .light {
+    background: $white;
+  }
 }

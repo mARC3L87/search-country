@@ -1,0 +1,62 @@
+@import '../../styles/settings.scss';
+
+.detail-country-wrapper {
+  margin: 80px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  .image-wrapper {
+    max-width: 600px;
+    img {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+  .detail-country-text {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    width: 100%;
+    justify-content: flex-end;
+    .country-info {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .country-info-col {
+        p {
+          font-size: $detailPage;
+          margin: 10px 0;
+          span {
+            font-weight: $fontXBold;
+          }
+        }
+      }
+    }
+    .borders {
+      display: flex;
+      align-items: center;
+      margin: 30px 0;
+
+      p {
+        margin-right: 8px;
+        span {
+          font-weight: $fontXBold;
+        }
+      }
+      ul {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+        flex-wrap: wrap;
+
+        li {
+          margin: 5px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}

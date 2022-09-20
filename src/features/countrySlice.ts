@@ -8,14 +8,14 @@ interface CountryTypes {
   filteredCountry: {
     name: {
       common: string;
-      nativeName: {};
+      nativeName: any | {};
     };
     tld: string[];
-    currencies: {};
+    currencies?: {};
     capital: string[];
     region: string;
     subregion: string;
-    languages: {};
+    languages?: any | {};
     borders?: string[] | undefined;
     population: number;
     flags: {
