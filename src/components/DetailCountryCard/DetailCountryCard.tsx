@@ -5,9 +5,11 @@ import {
   selectFilterdCountries,
   findCountry,
   fetchCountries,
+  fetchCodes,
 } from '../../features/countrySlice';
 import { selectMode } from '../../features/modeSlice';
 import { getLanguage, getCurrency, getNativeName } from '../../utils/utils';
+import Borders from '../Borders/Borders';
 import './DetailCountryCard.scss';
 
 const DetailCountryCard = () => {
@@ -36,7 +38,6 @@ const DetailCountryCard = () => {
     borders,
     flags,
   } = filterdCountries;
-
   return (
     <div className='detail-country-wrapper'>
       <div className='image-wrapper'>
@@ -84,7 +85,7 @@ const DetailCountryCard = () => {
                 className={`${mode === 'dark' ? 'dark' : 'light'}`}
                 key={index}
               >
-                {border}
+                <Borders border={border} />
               </li>
             ))}
           </ul>

@@ -7,7 +7,7 @@ import './CountryCard.scss';
 const CountryCard = ({ country }: CountryCardProps) => {
   const mode = useAppSelector(selectMode);
   return (
-    <Link to={`/${country.name.common}`}>
+    <Link to={`/${country.name.common.toLowerCase()}`}>
       <div
         className={`country-card-wrapper ${mode === 'dark' ? 'dark' : 'light'}`}
       >

@@ -3,6 +3,7 @@ import { RootState } from '../app/store';
 import axios from 'axios';
 
 interface CountryTypes {
+  codes: any | [];
   countries: any[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   filteredCountry: {
@@ -24,6 +25,7 @@ interface CountryTypes {
   };
 }
 const initialState: CountryTypes = {
+  codes: [],
   countries: [],
   status: 'loading',
   filteredCountry: {
@@ -58,13 +60,26 @@ export const fetchCountries = createAsyncThunk(
     }
   }
 );
+export const fetchCodes = createAsyncThunk(
+  'country/fetchCodes',
+  async (code: string[]) => {
+    try {
+      const codes = await axios.get<CountryTypes>(
+        `https://restcountries.com/v3.1/alpha?codes=${code}`
+      );
+      return codes.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
 export const countrySlice = createSlice({
   name: 'country',
   initialState,
   reducers: {
     findCountry: (state, action: PayloadAction<string | undefined>) => {
       state.filteredCountry = state.countries.find(
-        (country) => country.name.common === action.payload
+        (country) => country.name.common.toLowerCase() === action.payload
       );
     },
   },
@@ -80,6 +95,9 @@ export const countrySlice = createSlice({
       })
       .addCase(fetchCountries.rejected, (state) => {
         state.status = 'failed';
+      })
+      .addCase(fetchCodes.fulfilled, (state, action) => {
+        state.codes = action.payload;
       });
   },
 });
