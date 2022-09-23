@@ -6,6 +6,7 @@ import {
   findCountry,
   fetchCountries,
   fetchCodes,
+  selectNameByCodes,
 } from '../../features/countrySlice';
 import { selectMode } from '../../features/modeSlice';
 import { getLanguage, getCurrency, getNativeName } from '../../utils/utils';
@@ -15,17 +16,10 @@ import './DetailCountryCard.scss';
 const DetailCountryCard = () => {
   const { countryId } = useParams();
   const dispatch = useAppDispatch();
+
   const filterdCountries = useAppSelector(selectFilterdCountries);
   const mode = useAppSelector(selectMode);
-
-  useEffect(() => {
-    const waitForCountry = async () => {
-      await dispatch(fetchCountries());
-      dispatch(findCountry(countryId));
-    };
-    waitForCountry();
-  }, [countryId, dispatch]);
-
+  const nameByCode = useAppSelector(selectNameByCodes);
   const {
     name,
     region,
@@ -38,6 +32,19 @@ const DetailCountryCard = () => {
     borders,
     flags,
   } = filterdCountries;
+
+  useEffect(() => {
+    const waitForCountry = async () => {
+      await dispatch(fetchCountries());
+      dispatch(findCountry(countryId));
+    };
+    waitForCountry();
+  }, [countryId, dispatch]);
+  useEffect(() => {
+    if (borders) {
+      dispatch(fetchCodes(borders?.toString().toLowerCase()));
+    }
+  }, [borders, dispatch]);
   return (
     <div className='detail-country-wrapper'>
       <div className='image-wrapper'>
@@ -79,16 +86,20 @@ const DetailCountryCard = () => {
           <p>
             <span>Border Countries:</span>
           </p>
-          <ul>
-            {borders?.map((border, index) => (
-              <li
-                className={`${mode === 'dark' ? 'dark' : 'light'}`}
-                key={index}
-              >
-                <Borders border={border} />
-              </li>
-            ))}
-          </ul>
+          {nameByCode ? (
+            <ul>
+              {nameByCode?.map((countryName: any | {}, index: number) => (
+                <li
+                  className={`${mode === 'dark' ? 'dark' : 'light'}`}
+                  key={index}
+                >
+                  <Borders countryName={countryName} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No border countries.</p>
+          )}
         </div>
       </div>
     </div>

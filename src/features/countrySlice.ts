@@ -62,7 +62,7 @@ export const fetchCountries = createAsyncThunk(
 );
 export const fetchCodes = createAsyncThunk(
   'country/fetchCodes',
-  async (code: string[]) => {
+  async (code: string) => {
     try {
       const codes = await axios.get<CountryTypes>(
         `https://restcountries.com/v3.1/alpha?codes=${code}`
@@ -109,6 +109,8 @@ export const selectFilterdCountries = (state: RootState) =>
   state.countryState.filteredCountry;
 
 export const selectStatus = (state: RootState) => state.countryState.status;
+
+export const selectNameByCodes = (state: RootState) => state.countryState.codes;
 
 export const { findCountry } = countrySlice.actions;
 

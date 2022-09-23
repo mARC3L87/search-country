@@ -1,10 +1,18 @@
 import './Borders.scss';
 
 interface BorderProps {
-  border: string;
+  countryName: {
+    name: {
+      common: string;
+    };
+  };
 }
-const Borders = ({ border }: BorderProps) => {
-  return <div>{border}</div>;
+const Borders = ({ countryName }: BorderProps) => {
+  return (
+    <div>
+      <p className='border'>{countryName.name.common}</p>
+    </div>
+  );
 };
 
 export default Borders;
