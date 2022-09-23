@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { findCountry } from '../../features/countrySlice';
 import { selectMode } from '../../features/modeSlice';
 import { CountryCardProps } from './CountryCardInterface';
 import './CountryCard.scss';
 
 const CountryCard = ({ country }: CountryCardProps) => {
   const mode = useAppSelector(selectMode);
+  const dispatch = useAppDispatch();
+
   return (
-    <Link to={`/${country.name.common.toLowerCase()}`}>
+    <Link
+      onClick={() => dispatch(findCountry(country.name.common.toLowerCase()))}
+      to={`/${country.name.common.toLowerCase()}`}
+    >
       <div
         className={`country-card-wrapper ${mode === 'dark' ? 'dark' : 'light'}`}
       >

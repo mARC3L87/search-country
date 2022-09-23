@@ -6,23 +6,25 @@ interface CountryTypes {
   codes: any | [];
   countries: any[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  filteredCountry: {
-    name: {
-      common: string;
-      nativeName: any | {};
-    };
-    tld: string[];
-    currencies?: {};
-    capital: string[];
-    region: string;
-    subregion: string;
-    languages?: any | {};
-    borders?: string[] | undefined;
-    population: number;
-    flags: {
-      svg: string;
-    };
-  };
+  filteredCountry:
+    | any
+    | {
+        name: {
+          common: string;
+          nativeName: any | {};
+        };
+        tld: string[];
+        currencies?: {};
+        capital: string[];
+        region: string;
+        subregion: string;
+        languages?: any | {};
+        borders?: string[] | undefined;
+        population: number;
+        flags: {
+          svg: string;
+        };
+      };
 }
 const initialState: CountryTypes = {
   codes: [],
@@ -82,6 +84,10 @@ export const countrySlice = createSlice({
         (country) => country.name.common.toLowerCase() === action.payload
       );
     },
+    clearCountry: (state) => {
+      state.filteredCountry = {};
+      state.codes = [];
+    },
   },
   extraReducers(builder) {
     builder
@@ -112,6 +118,6 @@ export const selectStatus = (state: RootState) => state.countryState.status;
 
 export const selectNameByCodes = (state: RootState) => state.countryState.codes;
 
-export const { findCountry } = countrySlice.actions;
+export const { findCountry, clearCountry } = countrySlice.actions;
 
 export default countrySlice.reducer;

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
   selectFilterdCountries,
@@ -40,6 +40,7 @@ const DetailCountryCard = () => {
     };
     waitForCountry();
   }, [countryId, dispatch]);
+
   useEffect(() => {
     if (borders) {
       dispatch(fetchCodes(borders?.toString().toLowerCase()));
@@ -86,15 +87,17 @@ const DetailCountryCard = () => {
           <p>
             <span>Border Countries:</span>
           </p>
-          {nameByCode ? (
+          {nameByCode && nameByCode.length !== 0 ? (
             <ul>
               {nameByCode?.map((countryName: any | {}, index: number) => (
-                <li
-                  className={`${mode === 'dark' ? 'dark' : 'light'}`}
+                <Link
                   key={index}
+                  to={`/${countryName.name.common.toLowerCase()}`}
                 >
-                  <Borders countryName={countryName} />
-                </li>
+                  <li className={`${mode === 'dark' ? 'dark' : 'light'}`}>
+                    <Borders countryName={countryName} />
+                  </li>
+                </Link>
               ))}
             </ul>
           ) : (
