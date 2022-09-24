@@ -1,5 +1,5 @@
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { searchForCountry } from '../../features/countrySlice';
+import { searchForCountry, clearCountry } from '../../features/countrySlice';
 import { selectMode } from '../../features/modeSlice';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ const SearchInput = () => {
 
   useEffect(() => {
     if (inputValue === '') {
-      return;
+      dispatch(clearCountry());
     }
     dispatch(searchForCountry(inputValue.toLowerCase()));
   }, [dispatch, inputValue]);

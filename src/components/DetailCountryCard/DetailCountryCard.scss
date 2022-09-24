@@ -8,7 +8,10 @@
   align-items: flex-start;
   .image-wrapper {
     max-width: 600px;
+    border-radius: 10px;
+    display: flex;
     img {
+      border-radius: 10px;
       width: 100%;
       object-fit: cover;
       height: 100%;
@@ -17,7 +20,7 @@
   .detail-country-text {
     display: flex;
     flex-direction: column;
-    max-width: 700px;
+    max-width: 600px;
     width: 100%;
     justify-content: flex-end;
     .country-info {

@@ -24,9 +24,11 @@ const CountryWrapper = () => {
   return (
     <div className='country-wrapper'>
       {searchedCountry && searchedCountry.length !== 0
-        ? searchedCountry.map((country, index) => (
-            <CountryCard country={country} key={index} />
-          ))
+        ? searchedCountry
+            .map((country, index) => (
+              <CountryCard country={country} key={index} />
+            ))
+            .slice(0, 8)
         : allCountries
             .map((country, index) => (
               <CountryCard country={country} key={index} />

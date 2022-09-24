@@ -89,6 +89,7 @@ export const countrySlice = createSlice({
     clearCountry: (state) => {
       state.filteredCountry = {};
       state.codes = [];
+      state.searchedCountry = [];
     },
     searchForCountry: (state, action: PayloadAction<string>) => {
       state.searchedCountry = state.countries.filter((country) =>

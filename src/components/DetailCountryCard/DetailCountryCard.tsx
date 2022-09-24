@@ -48,7 +48,7 @@ const DetailCountryCard = () => {
   }, [borders, dispatch]);
   return (
     <div className='detail-country-wrapper'>
-      <div className='image-wrapper'>
+      <div className={`image-wrapper ${mode === 'dark' ? 'dark' : 'light'}`}>
         <img src={flags.svg} alt={name.common} />
       </div>
       <div className='detail-country-text'>
