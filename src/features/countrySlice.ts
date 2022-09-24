@@ -5,6 +5,7 @@ import axios from 'axios';
 interface CountryTypes {
   codes: any | [];
   countries: any[];
+  searchedCountry: any[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   filteredCountry:
     | any
@@ -29,6 +30,7 @@ interface CountryTypes {
 const initialState: CountryTypes = {
   codes: [],
   countries: [],
+  searchedCountry: [],
   status: 'loading',
   filteredCountry: {
     name: {
@@ -88,6 +90,12 @@ export const countrySlice = createSlice({
       state.filteredCountry = {};
       state.codes = [];
     },
+    searchForCountry: (state, action: PayloadAction<string>) => {
+      state.searchedCountry = state.countries.filter((country) =>
+        country.name.common.toLowerCase().includes(action.payload)
+      );
+      // console.log(action);
+    },
   },
   extraReducers(builder) {
     builder
@@ -118,6 +126,10 @@ export const selectStatus = (state: RootState) => state.countryState.status;
 
 export const selectNameByCodes = (state: RootState) => state.countryState.codes;
 
-export const { findCountry, clearCountry } = countrySlice.actions;
+export const selectSearchedCountry = (state: RootState) =>
+  state.countryState.searchedCountry;
+
+export const { findCountry, clearCountry, searchForCountry } =
+  countrySlice.actions;
 
 export default countrySlice.reducer;

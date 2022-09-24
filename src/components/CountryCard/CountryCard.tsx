@@ -27,9 +27,11 @@ const CountryCard = ({ country }: CountryCardProps) => {
           <p>
             <span>Region:</span> {country.region}
           </p>
-          <p>
-            <span>Capital:</span> {country.capital[0]}
-          </p>
+          {country.capital && (
+            <p>
+              <span>Capital:</span> {country.capital[0]}
+            </p>
+          )}
         </div>
       </div>
     </Link>
