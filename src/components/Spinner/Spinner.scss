@@ -1,0 +1,19 @@
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  .spinner-icon {
+    font-size: 60px;
+    text-align: center;
+    animation: spin 2.5s linear infinite;
+  }
+}
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

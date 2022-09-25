@@ -7,10 +7,12 @@ import {
   fetchCountries,
   fetchCodes,
   selectNameByCodes,
+  selectStatus,
 } from '../../features/countrySlice';
 import { selectMode } from '../../features/modeSlice';
 import { getLanguage, getCurrency, getNativeName } from '../../utils/utils';
 import Borders from '../Borders/Borders';
+import Spinner from '../Spinner/Spinner';
 import './DetailCountryCard.scss';
 
 const DetailCountryCard = () => {
@@ -20,6 +22,8 @@ const DetailCountryCard = () => {
   const filterdCountries = useAppSelector(selectFilterdCountries);
   const mode = useAppSelector(selectMode);
   const nameByCode = useAppSelector(selectNameByCodes);
+  const status = useAppSelector(selectStatus);
+
   const {
     name,
     region,
@@ -46,6 +50,10 @@ const DetailCountryCard = () => {
       dispatch(fetchCodes(borders?.toString().toLowerCase()));
     }
   }, [borders, dispatch]);
+
+  if (status === 'loading') {
+    return <Spinner />;
+  }
   return (
     <div className='detail-country-wrapper'>
       <div className={`image-wrapper ${mode === 'dark' ? 'dark' : 'light'}`}>

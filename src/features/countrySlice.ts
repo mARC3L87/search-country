@@ -111,7 +111,11 @@ export const countrySlice = createSlice({
       .addCase(fetchCountries.rejected, (state) => {
         state.status = 'failed';
       })
+      .addCase(fetchCodes.pending, (state) => {
+        state.status = 'loading';
+      })
       .addCase(fetchCodes.fulfilled, (state, action) => {
+        state.status = 'succeeded';
         state.codes = action.payload;
       });
   },

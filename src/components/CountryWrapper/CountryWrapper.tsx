@@ -7,6 +7,7 @@ import {
 } from '../../features/countrySlice';
 import { fetchCountries } from '../../features/countrySlice';
 import CountryCard from '../CountryCard/CountryCard';
+import Spinner from '../Spinner/Spinner';
 import './CountryWrapper.scss';
 
 const CountryWrapper = () => {
@@ -21,6 +22,9 @@ const CountryWrapper = () => {
     }
   }, [dispatch, status]);
 
+  if (status === 'loading') {
+    return <Spinner />;
+  }
   return (
     <div className='country-wrapper'>
       {searchedCountry && searchedCountry.length !== 0

@@ -17,6 +17,7 @@ const DetailCountry = () => {
     navigate('/');
     dispatch(clearCountry());
   };
+
   return (
     <section className='detail-country-container'>
       <div
