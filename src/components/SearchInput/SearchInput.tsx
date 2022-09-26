@@ -32,6 +32,7 @@ const SearchInput = () => {
       <input
         className={`${mode === 'dark' ? 'dark' : 'light'}`}
         type='text'
+        autoComplete='off'
         name='search'
         placeholder='Search for a country...'
         value={inputValue}

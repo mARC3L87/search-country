@@ -4,6 +4,7 @@ import {
   selectAllCountries,
   selectStatus,
   selectSearchedCountry,
+  selectRegionCountry,
 } from '../../features/countrySlice';
 import { fetchCountries } from '../../features/countrySlice';
 import CountryCard from '../CountryCard/CountryCard';
@@ -15,6 +16,7 @@ const CountryWrapper = () => {
   const allCountries = useAppSelector(selectAllCountries);
   const status = useAppSelector(selectStatus);
   const searchedCountry = useAppSelector(selectSearchedCountry);
+  const searchByRegion = useAppSelector(selectRegionCountry);
 
   useEffect(() => {
     if (status === 'loading') {
@@ -27,13 +29,20 @@ const CountryWrapper = () => {
   }
   return (
     <div className='country-wrapper'>
-      {searchedCountry && searchedCountry.length !== 0
+      {searchByRegion && searchByRegion.length !== 0
+        ? searchByRegion
+            .map((country, index) => (
+              <CountryCard country={country} key={index} />
+            ))
+            .slice(0, 8)
+        : searchedCountry && searchedCountry.length !== 0
         ? searchedCountry
             .map((country, index) => (
               <CountryCard country={country} key={index} />
             ))
             .slice(0, 8)
-        : allCountries
+        : searchByRegion.length === 0 &&
+          allCountries
             .map((country, index) => (
               <CountryCard country={country} key={index} />
             ))

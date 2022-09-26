@@ -6,6 +6,7 @@ interface CountryTypes {
   codes: any | [];
   countries: any[];
   searchedCountry: any[];
+  regionCountry: any[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   filteredCountry:
     | any
@@ -31,6 +32,7 @@ const initialState: CountryTypes = {
   codes: [],
   countries: [],
   searchedCountry: [],
+  regionCountry: [],
   status: 'loading',
   filteredCountry: {
     name: {
@@ -90,12 +92,18 @@ export const countrySlice = createSlice({
       state.filteredCountry = {};
       state.codes = [];
       state.searchedCountry = [];
+      state.regionCountry = [];
     },
     searchForCountry: (state, action: PayloadAction<string>) => {
       state.searchedCountry = state.countries.filter((country) =>
         country.name.common.toLowerCase().includes(action.payload)
       );
-      // console.log(action);
+      state.regionCountry = [];
+    },
+    filterByRegion: (state, action: PayloadAction<string>) => {
+      state.regionCountry = state.countries.filter(
+        (region) => region.region.toLowerCase() === action.payload
+      );
     },
   },
   extraReducers(builder) {
@@ -134,7 +142,10 @@ export const selectNameByCodes = (state: RootState) => state.countryState.codes;
 export const selectSearchedCountry = (state: RootState) =>
   state.countryState.searchedCountry;
 
-export const { findCountry, clearCountry, searchForCountry } =
+export const selectRegionCountry = (state: RootState) =>
+  state.countryState.regionCountry;
+
+export const { findCountry, clearCountry, searchForCountry, filterByRegion } =
   countrySlice.actions;
 
 export default countrySlice.reducer;
